@@ -1,0 +1,5 @@
+target("recursive_nlp")
+    set_kind("binary")
+    add_deps("ipopt")
+    add_files("*.cpp")
+    set_default(false)

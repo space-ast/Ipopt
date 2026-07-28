@@ -1,0 +1,5 @@
+target("hs071_c")
+    set_kind("binary")
+    add_deps("ipopt")
+    add_files("*.c")
+    set_default(false)

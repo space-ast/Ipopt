@@ -1,0 +1,17 @@
+LIBRARY dmumps.dll
+EXPORTS
+    dmumps_assign_colsca_ @1
+    dmumps_assign_colsca_loc_ @2
+    dmumps_assign_rhsintr_ @3
+    dmumps_assign_rowsca_ @4
+    dmumps_assign_rowsca_loc_ @5
+    dmumps_assign_singular_values_ @6
+    dmumps_c @7
+    dmumps_gpu_return @8
+    dmumps_nullify_c_colsca_ @9
+    dmumps_nullify_c_colsca_loc_ @10
+    dmumps_nullify_c_rhsintr_ @11
+    dmumps_nullify_c_rowsca_ @12
+    dmumps_nullify_c_rowsca_loc_ @13
+    dmumps_nullify_c_sing_values_ @14
+    dmumps_set_tmp_ptr_c_ @15
