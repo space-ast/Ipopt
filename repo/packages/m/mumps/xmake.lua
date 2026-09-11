@@ -16,7 +16,7 @@ package("mumps")
         add_patches("5.7.3", "patches/v5.7.3/fsymbol.patch", "440d37a2493a3cc7a688ca968cf5e2555ab8e6f8539ed6e2c31c71e5b5dd377e")
     elseif is_plat("linux") then
         add_syslinks("pthread")
-        add_deps("scotch")
+        add_deps("gfortran")
         add_links("smumps", "dmumps", "cmumps", "zmumps", "mumps_common", "pord", "mpiseq")
         add_configs("shared", {description = "Build shared library.", default = false, type = "boolean", readonly = true})
     end
@@ -36,7 +36,7 @@ package("mumps")
         local fortranc = assert(find_tool("gfortran"), "gfortran not found!")
 
         os.cp("Make.inc/Makefile.inc.generic.SEQ", "Makefile.inc")
-        io.replace("Makefile.inc", "ORDERINGSF  = -Dpord", "ORDERINGSF  = -Dscotch -Dpord", {plain = true})
+        io.replace("Makefile.inc", "ORDERINGSF  = -Dpord", "ORDERINGSF  = -Dpord", {plain = true})
         local links = "-lopenblas"
         if package:dep("openblas"):config("openmp") then
             links = "-fopenmp " .. links
@@ -61,9 +61,9 @@ package("mumps")
                 end
             end
         end
-        ldflags = (ldflags or "") .. " -lesmumps -lscotch -lscotcherr"
         envs.ISCOTCH = cflags
         envs.LSCOTCH = ldflags
+        envs.FPIC = "-fPIC"
         os.vrunv("make", {"all"}, {envs = envs})
         os.cp("include/*.h", package:installdir("include"))
         os.cp("libseq/*.h", package:installdir("include"))

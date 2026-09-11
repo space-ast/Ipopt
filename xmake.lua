@@ -21,7 +21,9 @@ target("ipopt")
     add_headerfiles("src/**.hpp", { prefixdir="coin-or" })      -- 添加所有.hpp文件
     add_includedirs(os.dirs("src/**"), {public=true})           -- 添加包含目录
     add_defines("IPOPTLIB_BUILD")                               -- 添加编译标识宏
-    add_defines("DLL_EXPORT")                                   -- 添加动态库导出宏
+    if is_plat("windows") then
+        add_defines("DLL_EXPORT")                               -- 添加动态库导出宏
+    end
     add_defines("IPOPT_HAS_MUMPS")                              -- 添加功能标识宏
     add_packages("mumps")                                       -- 添加mumps库
     

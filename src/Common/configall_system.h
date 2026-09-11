@@ -8,6 +8,8 @@
 
 #ifdef _MSC_VER
 # include "configall_system_msc.h"
+#elif defined(__GNUC__) || defined(__clang__)
+# include "configall_system_gcc.h"
 #else
 # error "Trying to use configall_system for unknown compiler."
 #endif
